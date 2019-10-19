@@ -173,7 +173,7 @@ class SimpleLogger
             case self::CRITICAL:
                 return $this->getColoredString('[critical]', 'red').$additionalData;
             default:
-                return '';
+                return '['.$type.']'.$additionalData;
         }
     }
 
