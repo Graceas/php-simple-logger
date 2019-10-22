@@ -65,12 +65,9 @@ class SimpleLogger
     const EMERGENCY = 600;
 
     /**
-     * This is only bumped when API breaks are done and should
-     * follow the major version of the library
-     *
      * @var int
      */
-    const API = 1;
+    protected $loggerLevel = self::DEBUG;
 
     /**
      * Logging levels from syslog protocol defined in RFC 5424
@@ -111,6 +108,15 @@ class SimpleLogger
     );
 
     /**
+     * SimpleLogger constructor.
+     * @param int $loggerLevel
+     */
+    public function __construct($loggerLevel = self::DEBUG)
+    {
+        $this->loggerLevel = $loggerLevel;
+    }
+
+    /**
      * @param string $text
      */
     public function addWarning($text)
@@ -148,7 +154,9 @@ class SimpleLogger
      */
     public function outToConsole($text, $type = self::DEBUG)
     {
-        printf('%s%s%s', $this->getMark($type), $text, PHP_EOL);
+        if ($this->loggerLevel >= $type) {
+            printf('%s%s%s', $this->getMark($type), $text, PHP_EOL);
+        }
     }
 
     /**
