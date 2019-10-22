@@ -154,7 +154,7 @@ class SimpleLogger
      */
     public function outToConsole($text, $type = self::DEBUG)
     {
-        if ($this->loggerLevel >= $type) {
+        if ($this->loggerLevel <= $type) {
             printf('%s%s%s', $this->getMark($type), $text, PHP_EOL);
         }
     }
