@@ -10,7 +10,7 @@ Through composer:
 
     "require": {
         ...
-        "graceas/php-simple-logger": "v1.1"
+        "graceas/php-simple-logger": "v1.1.1"
         ...
     }
 
