@@ -169,7 +169,7 @@ class SimpleLogger
         $date      = date('Y-m-d H:i:s');
         $time      = date('H:i:s');
         $timestamp = time();
-        $additionalData = '['.$timestamp.']'.'['.$date.']'.'['.$time.'] ';
+        $additionalData = '['.$timestamp.']'.'['.$this->getMemoryUsage().']'.'['.$date.']'.'['.$time.'] ';
 
         switch ($type) {
             case self::DEBUG:
@@ -209,5 +209,19 @@ class SimpleLogger
         $coloredString .=  $string."\033[0m";
 
         return $coloredString;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getMemoryUsage()
+    {
+        $result = 0;
+
+        if (function_exists('memory_get_usage')) {
+            $result = memory_get_usage() / 1024;
+        }
+
+        return number_format(intval($result) / 1024, 2, '.', '');
     }
 }
