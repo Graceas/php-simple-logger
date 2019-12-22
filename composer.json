@@ -3,9 +3,6 @@
     "description": "This simple PHP logger class.",
     "keywords": [ "Logger"],
     "type": "library",
-    "require": {
-        "php": ">=5.5.9"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -15,8 +12,17 @@
             "role": "Developer"
         }
     ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
     "minimum-stability": "stable",
     "autoload": {
-      "psr-0": { "SimpleLogger": "src/" }
+        "psr-0": { "SimpleLogger": "src/" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     }
 }
